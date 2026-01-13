@@ -1,126 +1,113 @@
-# 🔐 Secure Vault: Personal Data Encryption System
+Here is the professional README.md documentation for the Secure Data Encryption System. It is structured to provide clarity on security protocols, installation, and usage.
 
-A Streamlit-powered application that provides a secure vault for encrypting and managing personal text data with user-specific, PBKDF2-hashed credentials and Fernet encryption. Featuring salted password hashing, encrypted data storage, and a lockout mechanism to prevent brute‑force attacks, this project showcases best practices in cryptography combined with a sleek, gradient‑themed UI.
+Markdown
 
----
+# 🔐 Secure Data Encryption System Using Streamlit
 
-## 🚀 Key Features
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/jamilraza001/secure-data-encryption-system-using-streamlit)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue&logo=python&logoColor=white)](https://www.python.org/)
+[![Security: Fernet](https://img.shields.io/badge/Security-Fernet%20(AES)-green)](https://cryptography.io/en/latest/fernet/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-* **User Registration & Authentication**
+## 🛡️ Overview
 
-  * Secure signup with salt‑augmented password hashing (PBKDF2-HMAC-SHA256).
-  * Persistent user data stored in a JSON file (`data.json`).
+The **Secure Data Encryption System** is a robust web application built with **Streamlit** that enables users to protect sensitive text and files using advanced cryptographic standards. This tool serves as a secure interface for encrypting data into unreadable ciphertext and decrypting it back to its original form using a unique generated key.
 
-* **Data Encryption & Decryption**
+It is designed for professionals and students who need a quick, reliable method to secure information without setting up complex command-line tools.
 
-  * Encrypt arbitrary text with Fernet using keys derived from user passkeys and salts.
-  * Decrypt and display stored data only upon correct passkey verification.
 
-* **Lockout Protection**
 
-  * Configurable lockout after three failed login or decryption attempts.
-  * Automatic timeout (default 90 seconds) before retry is permitted.
+## 🔑 Key Features
 
-* **Session Persistence & Navigation**
+* **📝 Text Encryption & Decryption**: Instantly convert plain text messages into secure ciphertext and vice versa.
+* **📁 File Security**: Support for uploading, encrypting, and downloading files (Documents, Images, etc.).
+* **🗝️ Key Generation**: Automatic generation of **Fernet (AES-128)** keys. *Note: The key is required to decrypt data; losing it means losing the data forever.*
+* **💾 Secure Download**: Download your generated keys and encrypted files directly to your local machine.
+* **⚡ Real-time Processing**: Fast cryptographic operations powered by the Python `cryptography` library.
+* **🚫 No Data Storage**: For enhanced security, the app processes data in memory and does not store your files or keys on the server.
 
-  * Streamlit session state preserves the current user and active page.
-  * Sidebar navigation to Home, Insert Data, Retrieve Data, Login, Register, and Logout pages.
+## 🛠️ Installation
 
-* **Custom Theming & UX**
+Follow these steps to set up the secure environment on your local machine.
 
-  * Gradient backgrounds, animated headers, and styled buttons for a modern look.
-  * Form validation and clear error/success messages for user guidance.
+### Prerequisites
+* Python 3.9 or higher
+* Git
 
----
-
-## 📋 Prerequisites
-
-* Python 3.8 or higher
-* Streamlit
-* Cryptography library
-
-Install dependencies via pip:
-
+### 1. Clone the Repository
 ```bash
-pip install streamlit cryptography
-```
+git clone [https://github.com/JamilRaza001/Secure-Data-Encryption-System-Using-Streamlit.git](https://github.com/JamilRaza001/Secure-Data-Encryption-System-Using-Streamlit.git)
+cd Secure-Data-Encryption-System-Using-Streamlit
+2. Create a Virtual Environment
+Windows:
 
----
+Bash
 
-## 🛠 Installation & Setup
+python -m venv venv
+venv\Scripts\activate
+macOS/Linux:
 
-1. **Clone this repository**
+Bash
 
-   ```bash
-   ```
+python3 -m venv venv
+source venv/bin/activate
+3. Install Dependencies
+Bash
 
-git clone [https://github.com/yourusername/secure-vault.git](https://github.com/yourusername/secure-vault.git)
-cd secure-vault
+pip install -r requirements.txt
+4. Run the App
+Bash
 
-````
-
-2. **Run the application**
-   ```bash
 streamlit run app.py
-````
+📖 Usage Guide
+Encrypting Data
+Navigate to the Encryption tab.
 
-3. **Data File**
+Generate a Key or upload an existing key file.
 
-   * The app will create `data.json` in the project root to store users and encrypted entries.
+Enter the text or upload the file you wish to secure.
 
----
+Click Encrypt.
 
-## 🚦 Usage Guide
+Important: Download the generated key and the encrypted result. Keep the key safe!
 
-1. **Registration**
+Decrypting Data
+Navigate to the Decryption tab.
 
-   * Navigate to `Register` in the sidebar.
-   * Enter a unique username, password, and confirm.
-   * On success, user credentials are salted, hashed, and saved.
+Upload the same key used for encryption.
 
-2. **Login**
+Paste the ciphertext or upload the encrypted file.
 
-   * Select `Login` and enter your credentials.
-   * After three incorrect attempts, account is locked for 90 seconds.
+Click Decrypt to view the original data.
 
-3. **Insert Data**
+📦 Tech Stack
+Frontend: Streamlit
 
-   * Once logged in, choose `Insert Data`.
-   * Provide an identifier, the secret text, and a passkey (separate from login password).
-   * The text is encrypted and stored under your user profile.
+Logic: Python
 
-4. **Retrieve Data**
+Cryptography: Cryptography Library (Fernet/AES)
 
-   * Select `Retrieve Data` and enter the identifier plus the correct passkey.
-   * Upon successful verification, the encrypted text is decrypted and shown.
+⚠️ Security Disclaimer
+While this application uses standard industry encryption (Fernet/AES), it is intended for educational and personal data protection use.
 
-5. **Logout**
+Key Management: The developer is not responsible for lost keys. If you lose your key, the data cannot be recovered.
 
-   * Use `Logout` to end your session safely.
+Transmission: If hosted publicly, ensure the hosting platform uses HTTPS to secure the data in transit.
 
----
+🤝 Contributing
+Contributions are vital to the open-source community!
 
-## 📁 Project Structure
+Fork the Project.
 
-```
-├── app.py             # Main Streamlit application script
-├── data.json          # Auto-generated JSON storage for users & data
-├── README.md          # Project documentation (this file)
-└── requirements.txt   # (Optional) List of dependencies
-```
+Create your Feature Branch (git checkout -b feature/AmazingFeature).
 
----
+Commit your Changes (git commit -m 'Add some AmazingFeature').
 
-## 🛡 Security Considerations
+Push to the Branch (git push origin feature/AmazingFeature).
 
-* **Salted Hashing**: Passwords and passkeys are never stored in plaintext—only their salted hashes.
-* **Key Derivation**: PBKDF2 ensures brute‑force resistance by using 100,000 iterations.
-* **Fernet Encryption**: Utilizes AES in CBC mode with HMAC for authenticated encryption.
-* **Lockout Mechanism**: Prevents repeated unauthorized attempts by locking account after failures.
+Open a Pull Request.
 
----
+📜 License
+Distributed under the MIT License. See LICENSE for more information.
 
-## 📄 License
-
-Distributed under the MIT License. See [LICENSE](LICENSE) for details.
-
+Author: Jamil Raza
